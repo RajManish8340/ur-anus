@@ -58,7 +58,7 @@ async fn get_orca_price(mint: &str) -> Result<Value, (StatusCode, String)> {
         .map_err(|e| (StatusCode::BAD_GATEWAY, e.to_string()))?
         .json::<Value>()
         .await
-        .map_err(|e| (StatusCode::BAD_GATEWAY, e.to_string()))?;
+        .map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
     let usd_res = res["data"]["priceUsdc"].clone();
 
     Ok(usd_res)
