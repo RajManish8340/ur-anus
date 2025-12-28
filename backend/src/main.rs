@@ -1,24 +1,26 @@
-use axum::{Router, extract::Path, response::Json, routing::get};
-
 use axum::http::StatusCode;
+use axum::{Router, extract::Path, response::Json, routing::get};
 use reqwest::Client;
 use serde_json::Value;
 
 use dotenvy::dotenv;
 use std::env;
+use tower_http::cors::{Any, CorsLayer};
 
 #[tokio::main]
 async fn main() {
     dotenv().ok();
+    let cors = CorsLayer::new().allow_origin(Any);
     let app = Router::new()
         .route("/", get(check_health))
-        .route("/price/{mint}", get(get_price));
+        .route("/price/{mint}", get(get_price))
+        .layer(cors);
 
-    let listerner = tokio::net::TcpListener::bind("127.0.0.1:3000")
+    let listerner = tokio::net::TcpListener::bind("127.0.0.1:3001")
         .await
         .unwrap();
 
-    println!("server running at port http://127.0.0.1:3000");
+    println!("server running at port http://127.0.0.1:3001");
 
     axum::serve(listerner, app).await.unwrap();
 }
