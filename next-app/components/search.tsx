@@ -33,7 +33,7 @@ export default function TokenSearch() {
       async function fetchPrice() {
          try {
             //@ts-ignore
-            const res = await fetch(`http://127.0.0.1:3001/price/${selectedToken.id}`);
+            const res = await fetch(`/api/price/${selectedToken.id}`);
             const data = await res.json();
             setPriceData(data);
          } catch (err) {
@@ -58,7 +58,7 @@ export default function TokenSearch() {
 
             <ul className="bg-amber-50">
                {filtered.slice(0, 15).map(t => (
-                  <li className="p-1 border-b-blue-400"
+                  <li className="p-1"
                      key={t.id}
                      onClick={() => setSelectedToken(t)}
                      style={{ cursor: "pointer" }}
