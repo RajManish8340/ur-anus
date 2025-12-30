@@ -41,7 +41,7 @@ export default function TokenSearch() {
          }
       }
 
-      fetchPrice(); const interval = setInterval(fetchPrice, 3000);
+      fetchPrice(); const interval = setInterval(fetchPrice, 4000);
 
       return () => clearInterval(interval); // cleanup when token changes/unmounts
    }, [selectedToken]);

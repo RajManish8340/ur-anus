@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 
-export async function GET(
-   _req: Request,
-   { params }: { params: Promise<{ mint: string }> }
-) {
+export async function GET(_req: Request, { params }: { params: Promise<{ mint: string }> }) {
+
    const { mint } = await params;
 
    const jupUrl = `https://api.jup.ag/price/v3?ids=${mint}`;
@@ -22,8 +20,8 @@ export async function GET(
 
          fetch(raydiumUrl)
             .then(r => r.json())
-            .catch(() => null),
-      ]);
+            .catch(() => null)
+      ])
 
       return NextResponse.json({
          mint,
@@ -31,12 +29,15 @@ export async function GET(
             jup: jupRes ? jupRes[mint]?.usdPrice : null,
             orca: orcaRes ? orcaRes.data?.priceUsdc : null,
             radium: raydiumRes ? raydiumRes.data?.[mint] : null,
-         },
-      });
-   } catch (err: any) {
+         }
+      })
+   } catch (e: any) {
       return NextResponse.json(
-         { error: err.message || "Something went wrong" },
+         { error: e.message || "Something went wrong" },
          { status: 500 }
-      );
+      )
+
    }
+
+
 }
