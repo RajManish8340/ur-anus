@@ -1,9 +1,11 @@
+import Navbar from "@/components/Navbar";
 import TokenSearch from "@/components/search";
 
 export default function Home() {
-   return (
-      <div> Hello my name is Raj manish sahu
-         <TokenSearch />
-      </div>
-   );
+  return (
+    <div>
+      <Navbar />
+      <TokenSearch />
+    </div>
+  );
 }
