@@ -51,6 +51,9 @@ export default function TokenSearch() {
 
   return (
     <div className="flex flex-col items-center py-5">
+      <div className="flex items-center">
+        search for spl (solana program library tokens)
+      </div>
       <div className="flex flex-col items-center justify-between m-2" >
 
         <input className="p-2 bg-red-300 font-black text-black rounded-2xl"

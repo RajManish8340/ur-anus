@@ -1,8 +1,11 @@
 
 export default function Navbar() {
   return (
-    <div className="text-4xl p-3">
-      UrAnus
+    <div >
+      <div className="text-4xl p-4">
+        UrAnus
+      </div>
+
     </div>
   )
 }
